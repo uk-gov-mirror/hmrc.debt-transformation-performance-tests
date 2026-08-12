@@ -15,13 +15,14 @@
  */
 
 package uk.gov.hmrc.perftests.debttransformation.simulation
-import scala.concurrent.duration._
 import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
 import uk.gov.hmrc.perftests.debttransformation.requests._
-import uk.gov.hmrc.perftests.debttransformation.requests.ifs.{FieldCollection_InterestForecastingRequests, SuppressionsRequests, _}
-import uk.gov.hmrc.perftests.debttransformation.requests.sol.{FCStatementOfLiabilityRequests, StatementOfLiabilityRequests}
+import uk.gov.hmrc.perftests.debttransformation.requests.ifs._
+import uk.gov.hmrc.perftests.debttransformation.requests.sol.StatementOfLiabilityRequests
 import uk.gov.hmrc.perftests.debttransformation.utils.BaseUrls._
 import uk.gov.hmrc.perftests.debttransformation.utils.FutureAwaits._
+
+import scala.concurrent.duration._
 
 class Simulation extends PerformanceTestRunner {
 
@@ -35,22 +36,6 @@ class Simulation extends PerformanceTestRunner {
   setup("request-Statement-of-Liability-for-multiple-debts", "request statement of liability for multiple debts")
     .withChainedActions(
       StatementOfLiabilityRequests.statementOfLiabilityRequestFormultipleDebts(statementOfLiabilityApiBaseUrl)
-    )
-
-  setup("request-fc-sol-for-single-debts", "request FC statement of liability for single debt")
-    .withChainedActions(
-      FCStatementOfLiabilityRequests.fcSolAPIRequestWithSingleDebtRequest(statementOfLiabilityApiBaseUrl)
-    )
-  setup("request-fc-sol-for-multiple-debts", "request FC statement of liability for multiple debt")
-    .withChainedActions(
-      FCStatementOfLiabilityRequests.fcSolRequestFormultipleDebts(statementOfLiabilityApiBaseUrl)
-    )
-  setup(
-    "request-fc-sol-for-single-debt-with-no-payment-history",
-    "request FC statement of liability for single debt with no payment history"
-  )
-    .withChainedActions(
-      FCStatementOfLiabilityRequests.fcSolAPIRequestWithNoPaymentHistory(statementOfLiabilityApiBaseUrl)
     )
 
   setup(
@@ -67,17 +52,6 @@ class Simulation extends PerformanceTestRunner {
       InterestForecastingRequests.nonInterestBearingDebtItemWithNoBreathingSpace(interestForecostingApiUrl)
     )
 
-  setup("single-debt-item-with-payment-history", "single debt item with single payment history")
-    .withChainedActions(FieldCollection_InterestForecastingRequests.singleDebtItem(interestForecostingApiUrl))
-
-  setup("multiple-debt-item-with-multiple-payment-history", "multiple debt item with multiple payment history")
-    .withChainedActions(FieldCollection_InterestForecastingRequests.multipleDebtItems(interestForecostingApiUrl))
-
-  setup("multiple-debt-item-with-single-payment-history", "multiple debt item with single payment history")
-    .withChainedActions(
-      FieldCollection_InterestForecastingRequests.multipleDebtItemsWithSinglePaymentHistory(interestForecostingApiUrl)
-    )
-
   setup(
     "multiple-sa-debt-items-with-payments-and-breathing-spaces",
     "multiple SA debt item with payments and breathing spaces"
@@ -86,66 +60,12 @@ class Simulation extends PerformanceTestRunner {
       InterestForecastingRequests.multipleDebtItemsWithPaymentsAndBreathingSpaces(interestForecostingApiUrl)
     )
 
-  setup("single-debt-item-with-no-interest-indicator", "single debt item with no interest indicator")
-    .withChainedActions(
-      FieldCollection_InterestForecastingRequests.singleDebtItemWithNoInterestIndicator(interestForecostingApiUrl)
-    )
-
-  setup("single-debt-item-with-no-payment-history", "single debt item with no payment history")
-    .withChainedActions(
-      FieldCollection_InterestForecastingRequests.singleDebtItemWithNoPaymentHistory(interestForecostingApiUrl)
-    )
-
-  setup("multiple-debt-item-with-leap-year-payment-history", "multiple debt item with single leap year payment history")
-    .withChainedActions(
-      FieldCollection_InterestForecastingRequests.multipleDebtItemWithLeapYearPaymentHistory(interestForecostingApiUrl)
-    )
-
-  setup("multiple-debt-item-with-all-fields-happy-path", "multiple debt item with all fields in the request")
-    .withChainedActions(
-      FieldCollection_InterestForecastingRequests.happyPathmultipleDebtItemWithAllFields(interestForecostingApiUrl)
-    )
-
-  setup("single-vat-debt-item-with-single-payment", "Single Vat Debt Item with single payment")
-    .withChainedActions(FieldCollection_Vat_InterestForecastingRequests.singleDebtItem(interestForecostingApiUrl))
-
-  setup("multiple-vat-debt-item-with-payment-history", "Multiple Vat Debt Item with Payment History")
-    .withChainedActions(FieldCollection_Vat_InterestForecastingRequests.multipleDebtItems(interestForecostingApiUrl))
-
-  setup("multiple-vat-debt-item-with-single-payment-history", "Multiple VAT Debt Item with Single Payment History")
-    .withChainedActions(
-      FieldCollection_Vat_InterestForecastingRequests.multipleDebtItemsWithSinglePaymentHistory(
-        interestForecostingApiUrl
-      )
-    )
-
-  setup(
-    "single-vat-debt-item-with-payment-history-and-no-interest-indicator",
-    "Single Vat Debt Item with Payment History and No interest indicator"
-  )
-    .withChainedActions(
-      FieldCollection_Vat_InterestForecastingRequests.singleVatDebtItemWithNoInterestIndicator(
-        interestForecostingApiUrl
-      )
-    )
-
   setup(
     "multiple-sa-debt-items-with-payments-and-breathing-spaces",
     "multiple sa debt item with payments and breathing spaces"
   )
     .withChainedActions(
       InterestForecastingRequests.multipleDebtItemsWithPaymentsAndBreathingSpaces(interestForecostingApiUrl)
-    )
-  setup("multiple-debts-with-multiple-breathing-spaces", "multiple debts with multiple breathing spaces")
-    .withChainedActions(
-      FieldCollection_Vat_InterestForecastingRequests.fcVatFoMultipleDebtsWithMultipleBreathingSpaces(
-        interestForecostingApiUrl
-      )
-    )
-
-  setup("Single-debt-with-breathing-space-and-payment-history", "Single debt with breathing space and payment history")
-    .withChainedActions(
-      FieldCollection_Vat_InterestForecastingRequests.fcVatForSingleDebtWithBreathingSpace(interestForecostingApiUrl)
     )
 
   setup("two-debt-items-with-Leap-year-payment-history", "debt Items With Leap Year PaymentHistory")
