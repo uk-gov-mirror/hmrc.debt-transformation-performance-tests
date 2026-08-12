@@ -38,6 +38,26 @@ class Simulation extends PerformanceTestRunner {
       StatementOfLiabilityRequests.statementOfLiabilityRequestFormultipleDebts(statementOfLiabilityApiBaseUrl)
     )
 
+//************************************************************************************************************
+// These setups have been commented out as the endpoint being called has been removed from IFS
+// as part of ticket DTD-2146.  Ticket DTD-3075 will remove FC SoL and this file will be deleted then.
+//************************************************************************************************************
+//  setup("request-fc-sol-for-single-debts", "request FC statement of liability for single debt")
+//    .withChainedActions(
+//      FCStatementOfLiabilityRequests.fcSolAPIRequestWithSingleDebtRequest(statementOfLiabilityApiBaseUrl)
+//    )
+//  setup("request-fc-sol-for-multiple-debts", "request FC statement of liability for multiple debt")
+//    .withChainedActions(
+//      FCStatementOfLiabilityRequests.fcSolRequestFormultipleDebts(statementOfLiabilityApiBaseUrl)
+//    )
+//  setup(
+//    "request-fc-sol-for-single-debt-with-no-payment-history",
+//    "request FC statement of liability for single debt with no payment history"
+//  )
+//    .withChainedActions(
+//      FCStatementOfLiabilityRequests.fcSolAPIRequestWithNoPaymentHistory(statementOfLiabilityApiBaseUrl)
+//    )
+
   setup(
     "Multiple-debt-items-with-one-payments-no-breathing-space",
     "Multiple debt items with one payments breathing space"
