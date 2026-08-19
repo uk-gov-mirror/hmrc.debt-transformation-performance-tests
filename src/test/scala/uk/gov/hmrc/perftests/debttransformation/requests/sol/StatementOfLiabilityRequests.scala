@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.perftests.debttransformation.requests.sol
 
-import io.gatling.core.Predef.{StringBody, configuration}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef.{http, status, _}
 import io.gatling.http.request.builder.HttpRequestBuilder
