@@ -1,5 +1,4 @@
 name := "debt-transformation-performance-tests"
-
 version := "0.1"
 
 enablePlugins(GatlingPlugin)
@@ -10,14 +9,11 @@ enablePlugins(IvyPlugin)
 organization := "uk.gov.hmrc"
 
 organization := "uk.gov.hmrc"
-scalaVersion := "2.13.18"
+scalaVersion := "3.3.6"
+val scalaOptionSettings = Seq("-no-indent", "-Yretain-trees", "-source:future-migration","-feature", "-language:postfixOps")
 Test / testOptions := Seq.empty
 
-scalacOptions ++= Seq(
-  "-feature",
-  "-language:implicitConversions",
-  "-language:postfixOps"
-)
+scalacOptions ++=scalaOptionSettings
 
 resolvers ++= Seq(Resolver.typesafeRepo("releases"))
 

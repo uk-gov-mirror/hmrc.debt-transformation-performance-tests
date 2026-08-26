@@ -20,7 +20,7 @@ import play.api.libs.json.Json
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 import uk.gov.hmrc.perftests.debttransformation.utils.BaseUrls.authLoginApiUri
 import uk.gov.hmrc.perftests.debttransformation.utils.RandomValues
-import uk.gov.hmrc.perftests.debttransformation.utils.WsClient._
+import uk.gov.hmrc.perftests.debttransformation.utils.WsClient.*
 
 import scala.concurrent.Await
 

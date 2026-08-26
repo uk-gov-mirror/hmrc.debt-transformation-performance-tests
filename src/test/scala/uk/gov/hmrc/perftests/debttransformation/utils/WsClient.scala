@@ -16,17 +16,18 @@
 
 package uk.gov.hmrc.perftests.debttransformation.utils
 
-import com.typesafe.scalalogging.LazyLogging
+import org.slf4j.LoggerFactory
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.util.ByteString
 import play.api.libs.json.{JsValue, Json}
-import play.api.libs.ws._
+import play.api.libs.ws.*
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 
 import scala.concurrent.Await
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 
-object WsClient extends LazyLogging {
+object WsClient {
+  private val logger = LoggerFactory.getLogger(getClass)
   val timeout: FiniteDuration = 60 seconds
 
   implicit val bodyWrites: BodyWritable[JsValue] =
@@ -46,7 +47,7 @@ object WsClient extends LazyLogging {
     val request  = client.url(uri)
     val response = Await.result(
       request
-        .withHttpHeaders(headers.toSeq: _*)
+        .withHttpHeaders(headers.toSeq*)
         .withFollowRedirects(false)
         .post(json),
       timeout
@@ -69,7 +70,7 @@ object WsClient extends LazyLogging {
     val request  = client.url(uri)
     val response = Await.result(
       request
-        .withHttpHeaders(headers.toSeq: _*)
+        .withHttpHeaders(headers.toSeq*)
         .withFollowRedirects(false)
         .delete(),
       timeout
@@ -82,5 +83,4 @@ object WsClient extends LazyLogging {
 
     response
   }
-
 }

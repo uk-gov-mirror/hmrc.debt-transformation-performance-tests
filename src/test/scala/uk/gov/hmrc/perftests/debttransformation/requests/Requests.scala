@@ -20,6 +20,7 @@ import io.gatling.core.action.builder.ActionBuilder
 import io.gatling.core.structure.ChainBuilder
 import uk.gov.hmrc.performance.conf.Configuration
 import uk.gov.hmrc.performance.simulation.JourneyPart
+import scala.language.implicitConversions
 
 package object requests extends Configuration {
 
@@ -28,6 +29,6 @@ package object requests extends Configuration {
   implicit def convertActionToSeq(act: ActionBuilder): Seq[ActionBuilder] = Seq(act)
 
   implicit class AugmentJourneyParts(j: JourneyPart) {
-    def withChainedActions(builders: Seq[ActionBuilder]*): JourneyPart = j.withActions(builders.flatten: _*)
+    def withChainedActions(builders: Seq[ActionBuilder]*): JourneyPart = j.withActions(builders.flatten*)
   }
 }
