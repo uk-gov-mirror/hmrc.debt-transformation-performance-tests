@@ -14,4 +14,4 @@ fi
 
 echo "*** Running locally: $isLocal. Smoke-test mode: $isSmokeTest ***"
 
-sbt -DrunLocal=$isLocal -Dperftest.runSmokeTest=$isSmokeTest -Dperftest.labels=statement-of-liability clean gatling:test
+sbt -DrunLocal=$isLocal -Dperftest.runSmokeTest=$isSmokeTest -Dperftest.labels=statement-of-liability clean "Gatling/test"

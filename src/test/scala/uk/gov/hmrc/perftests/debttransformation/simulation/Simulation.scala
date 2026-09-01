@@ -16,13 +16,13 @@
 
 package uk.gov.hmrc.perftests.debttransformation.simulation
 import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
-import uk.gov.hmrc.perftests.debttransformation.requests._
-import uk.gov.hmrc.perftests.debttransformation.requests.ifs._
+import uk.gov.hmrc.perftests.debttransformation.requests.*
+import uk.gov.hmrc.perftests.debttransformation.requests.ifs.*
 import uk.gov.hmrc.perftests.debttransformation.requests.sol.StatementOfLiabilityRequests
-import uk.gov.hmrc.perftests.debttransformation.utils.BaseUrls._
-import uk.gov.hmrc.perftests.debttransformation.utils.FutureAwaits._
+import uk.gov.hmrc.perftests.debttransformation.utils.BaseUrls.*
+import uk.gov.hmrc.perftests.debttransformation.utils.FutureAwaits.*
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.DurationInt
 
 class Simulation extends PerformanceTestRunner {
 
