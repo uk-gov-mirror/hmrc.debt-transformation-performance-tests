@@ -105,10 +105,6 @@ class Simulation extends PerformanceTestRunner {
 
   before {
     SuppressionsRequests.deleteSuppressionData()
-    SuppressionsRequests.postSuppressionData()
-    SuppressionsRequests.postOpenEndedSuppressionData()
-    SuppressionsRequests.deleteSuppressionRules()
-    SuppressionsRequests.postSuppressionRules()
   }
   runSimulation()
 }
